@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Note class="oracle.dbtools.crest.model.design.Note" name="Note_1" directorySegmentName="seg_0" id="440C8A75-58F7-C448-59AA-2428D1DBDB08">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:43:56 UTC</createdTime>
+<comment>Logical Model</comment>
+<ownerDesignName>models_tree</ownerDesignName>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="true"/>
+</engineerTo>
+</Note>

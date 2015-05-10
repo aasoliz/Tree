@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4D9ACB50-099C-192B-573E-1A09DB83F5C9" name="Follow">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:48:19 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="user_id" id="84A249A2-C729-B7EA-E3AB-C11DF23A96FE">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:48:51 UTC</createdTime>
+<generatorID>CE482C16-0886-E7F1-E731-EEC79AB8356C</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>BB3FA7E5-A9E5-B07D-95B1-B6522684BF92</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="user_id1" id="CA180637-0FC8-5AF1-27F3-96A1934B9B66">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:49:38 UTC</createdTime>
+<generatorID>DF7313C8-4BB7-EC13-8B3A-858EB6CBBF66</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>BB3FA7E5-A9E5-B07D-95B1-B6522684BF92</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+</attributes>
+</Entity>

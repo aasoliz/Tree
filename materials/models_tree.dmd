@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="models_tree" id="2B66CE2E-21B6-CB6D-76EC-9B9FA45D80BE" version="3.5">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:15:31 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>2B66CE2E-21B6-CB6D-76EC-9B9FA45D80BE</designId>
+</OSDM_Design>

@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="6700FCD4-EFBF-BB99-5896-B1424DD09350" name="Comment" seqName="seg_0"/>
+   <object objectType="Table" objectID="ED59301C-E368-0CED-3BD2-B47ABBF30024" name="Follow" seqName="seg_0"/>
+   <object objectType="Table" objectID="BE78F9EE-6E61-4711-B64E-3D10AE1F5ABB" name="Post" seqName="seg_0"/>
+   <object objectType="Table" objectID="A5610EA5-6980-0101-9A68-1CAAB37A3308" name="User" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="2FABF84C-63AA-F39D-6E8B-DC54AEE17B26" name="Commentsv1_Post_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="A42E709B-4210-0357-81CD-62FF1D9AC28F" name="Commentsv1_Post_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="79AD8349-6149-40CC-197C-37ABA6F1224C" name="Follow_User_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="AE2812FD-AA6F-C4E7-D2B6-39CC8F9284FD" name="Follow_User_FKv2" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="9966944F-3869-0BA1-1E8A-5480FED05A67" name="Post_User_FK" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

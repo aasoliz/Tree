@@ -1,8 +1,6 @@
 import os
-#from flask.ext.login import LoginManager
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-#login_manager = LoginManager()
 
 CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'

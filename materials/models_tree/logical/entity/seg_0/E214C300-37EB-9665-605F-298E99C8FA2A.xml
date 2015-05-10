@@ -1,0 +1,127 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E214C300-37EB-9665-605F-298E99C8FA2A" name="User">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:16:11 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="user_id" id="BB3FA7E5-A9E5-B07D-95B1-B6522684BF92">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:17:21 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="name" id="3D8CFFAB-0391-9699-C03D-1D6EEA5E7D17">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:17:33 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+</Attribute>
+<Attribute name="age" id="0C32C833-8ADB-73E9-E8D2-5064CD9A0884">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:17:49 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="email" id="2C26832D-8FB9-1DB3-5E0C-AD6E4016A335">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:19:52 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+</Attribute>
+<Attribute name="last_seen" id="A3939508-7C8F-F2EF-FBE7-43AAC6A0F6EA">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:20:26 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+</Attribute>
+<Attribute name="about_me" id="0F37E9AB-4C5B-67FB-BF58-B427204379B4">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:20:50 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>140</dataTypeSize>
+</Attribute>
+<Attribute name="reputation" id="E68DDDC3-D6CB-0092-C852-D10671875D5E">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:21:06 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="07D68317-2CAF-DEA8-1F7C-BB6919DDBF43" name="User PK">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:17:32 UTC</createdTime>
+<ownerDesignName>models_tree</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="57909530-FA28-5F0B-262B-028EB1EB3547" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>BB3FA7E5-A9E5-B07D-95B1-B6522684BF92</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

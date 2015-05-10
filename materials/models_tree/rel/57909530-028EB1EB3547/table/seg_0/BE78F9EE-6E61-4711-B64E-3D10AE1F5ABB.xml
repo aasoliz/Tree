@@ -1,0 +1,119 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BE78F9EE-6E61-4711-B64E-3D10AE1F5ABB" name="Post">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>64C19431-2BD7-4CED-E95F-5FCD97B9397A</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="post_id" id="63005B5D-E2D2-CC57-7014-3D83DBA83A13">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>71C944FE-BB16-E180-CE17-8617574ED3D0</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="post" id="C4108B1D-9F00-C5DC-473C-383A2032667E">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>033B7583-3418-C60F-F484-827488BA0DE9</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date_posted" id="62C39CE9-B832-8183-62CE-AF414A890FDA">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>3E9DD984-FAD5-E5BD-D19D-1F0CAA9B9471</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="views" id="8EE62277-206E-0ECA-FD27-9D84CE632EED">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>CEA154A9-EBC0-F57F-B7FA-A329DA047924</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="image" id="87A21BD9-A59E-A766-316E-C0E0A3EAC855">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>3AB9A31B-6D88-D6C4-223F-B8063A104273</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT031</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="User_user_id" id="CD6DEE4C-00A2-4C36-1B18-EA434FAAAC9E">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>8A0FDCA2-ACC8-0F19-11B5-8E04A13DABF6</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<delegate>A6268A78-61E7-6A13-C21C-11388B7D54FC</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9966944F-3869-0BA1-1E8A-5480FED05A67" referredColumn="A6268A78-61E7-6A13-C21C-11388B7D54FC"/>
+</associations>
+</Column>
+<Column name="type" id="2E120766-8134-BD1E-66F5-C2A722FA1894">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>706AB5DF-349D-626E-D8E3-A0945CBDA5A3</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>25</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A4D6FDF9-B029-1B3B-5C4B-A0F3AFDEF315" name="Post_PK">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:56 UTC</createdTime>
+<generatorID>300C5D99-5BEB-9018-C328-AC5D95CBFB75</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="63005B5D-E2D2-CC57-7014-3D83DBA83A13"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6F96715B-F89E-7958-3C56-2C5F48695057" name="Post_User_FK">
+<createdBy>aasoliz</createdBy>
+<createdTime>2015-05-09 19:44:57 UTC</createdTime>
+<generatorID>7BB17F69-9C37-73E9-E282-330EA7BDF61B</generatorID>
+<ownerDesignName>models_tree</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD6DEE4C-00A2-4C36-1B18-EA434FAAAC9E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

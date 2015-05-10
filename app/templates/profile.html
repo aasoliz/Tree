@@ -3,14 +3,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if user.nickname %}
-    <h1>Hi, {{ user.nickname }}!</h1>
-    {% else %}
-    <h1> Hi, Guest!</h1>
-    {% endif %}
+    <h1>Hi, {{ g.user.nickname }}!</h1>
+    <p><b>About Me: </b>{{ g.user.about_me }}</p>
     {% for post in posts %}
     <p>
         {{ post.author.nickname }} says: <b>{{ post.body }}</b>
     </p>
     {% endfor %}
+    <a href="{{ url_for('edit') }}">Edit</a>
 {% endblock %}

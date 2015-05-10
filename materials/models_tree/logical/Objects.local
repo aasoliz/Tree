@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="Entity" objectID="5E14EFF3-4B4F-7F6E-2B60-B2FADA7A5311" name="Comment" seqName="seg_0"/>
+   <object objectType="Entity" objectID="4D9ACB50-099C-192B-573E-1A09DB83F5C9" name="Follow" seqName="seg_0"/>
+   <object objectType="Entity" objectID="64C19431-2BD7-4CED-E95F-5FCD97B9397A" name="Post" seqName="seg_0"/>
+   <object objectType="Entity" objectID="E214C300-37EB-9665-605F-298E99C8FA2A" name="User" seqName="seg_0"/>
+   <object objectType="Relation" objectID="80F9EEA8-A68C-183C-D68D-515C46D436C9" name="post_comment(1)" seqName="seg_0"/>
+   <object objectType="Relation" objectID="8DCA41C3-674A-682D-C3CF-734BFE691D59" name="post_comment(2)" seqName="seg_0"/>
+   <object objectType="Relation" objectID="DF7313C8-4BB7-EC13-8B3A-858EB6CBBF66" name="user_followed" seqName="seg_0"/>
+   <object objectType="Relation" objectID="CE482C16-0886-E7F1-E731-EEC79AB8356C" name="user_follower" seqName="seg_0"/>
+   <object objectType="Relation" objectID="7BB17F69-9C37-73E9-E282-330EA7BDF61B" name="user_posted" seqName="seg_0"/>
+   <object objectType="Note" objectID="440C8A75-58F7-C448-59AA-2428D1DBDB08" name="Note_1" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.logical.LogicalDesign>

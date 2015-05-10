@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
 from app import app, db, lm
-from .forms import LoginForm
+from .forms import LoginForm, EditForm
 from .models import User
 from auth import GoogleSignIn, OAuthSignIn
 
@@ -81,3 +81,34 @@ def load_user(id):
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/profile/<nickname>')
+@login_required
+def profile(nickname):
+  user = User.query.filter_by(nickname=nickname).first()
+  posts = ""
+
+  if user is None:
+    flash('User not found')
+    return redirect(url_for('index'))
+
+  return render_template("profile.html", user=user, posts=posts)
+
+@app.route('/edit', methods=['GET', 'POST'])
+@login_required
+def edit():
+  form = EditForm()
+
+  if form.validate_on_submit():
+    g.user.about_me = form.about_me.data
+
+    db.session.add(g.user)
+    db.session.commit()
+
+    flash('Saved Changes')
+    return redirect(url_for('edit'))
+
+  else:
+    form.about_me = form.about_me
+
+  return render_template('edit.html', form=form)
