@@ -1,5 +1,9 @@
 from app import db
 
+follow_table = db.Table('follow_table',
+  db.Column('follower', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+  db.Column('followee', db.Integer, db.ForeignKey('user.id'), primary_key=True)
+)
 
 class User(db.Model):
   __tablename__ = 'user'
@@ -13,6 +17,12 @@ class User(db.Model):
   about_me = db.Column(db.String(140))
   reputation = db.Column(db.Integer)
   posts = db.relationship('User_Post', backref='author', lazy='dynamic')
+  followed = db.relationship('User',
+    secondary=follow_table,
+    primaryjoin=(follow_table.c.follower == id),
+    secondaryjoin=(follow_table.c.followee == id),
+    backref=db.backref('follow_table', lazy='dynamic'), lazy='dynamic'
+  )
 
   # The user is logged in
   def is_authenticated(self):
@@ -32,6 +42,19 @@ class User(db.Model):
       return unicode(self.id)  # python 2
     except NameError:
       return str(self.id)  # python 3
+
+  def follow(self, user):
+    if not self.is_following(user):
+      self.followed.append(user)
+      return self
+
+  def unfollow(self, user):
+    if self.is_following(user):
+      self.followed.remove(user)
+      return self
+
+  def is_following(self, user):
+    return self.followed.filter(follow_table.c.followee == user.id).count() > 0
 
   def __repr__(self):
     return '<User %r>' % (self.nickname)

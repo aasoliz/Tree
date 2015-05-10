@@ -75,6 +75,11 @@ def oauth_callback(provider):
         user=User(nickname=nickname, email=email)
         db.session.add(user)
         db.session.commit()
+
+        u = user.follow(user)
+        db.session.add(u)
+        db.session.commit()
+
     # Log in the user, by default remembering them for their next visit
     # unless they log out.
     login_user(user, remember=True)
@@ -119,3 +124,54 @@ def edit():
     form.about_me = form.about_me
 
   return render_template('edit.html', form=form)
+
+@app.route('/follow/<nickname>')
+@login_required
+def follow(nickname):
+  user = User.query.filter_by(nickname=nickname).first()
+
+  if user is None:
+    flash('User not found')
+    return redirect(url_for('index'))
+
+  if user == g.user:
+    flash('You cant follow yourself')
+    return redirect(url_for('profile', nickname=nickname))
+
+  u = g.user.follow(user)
+
+  if u is None:
+    flash('Unable to follow')
+    return redirect(url_for('profile', nickname=nickname))
+
+  db.session.add(u)
+  db.session.commit()
+
+  flash('You are following %s' % nickname)
+  return redirect(url_for('profile', nickname=nickname))
+
+
+@app.route('/unfollow/<nickname>')
+@login_required
+def unfollow(nickname):
+  user = User.query.filter_by(nickname=nickname).first()
+
+  if user is None:
+    flash('User not found')
+    return redirect(url_for('index'))
+
+  if user == g.user:
+    flash('you have to follow yourself')
+    return redirect(url_for('profile', nickname=nickname))
+
+  u = g.user.unfollow(user)
+
+  if u is None:
+    flash('Unable to unfollow')
+    return redirect(url_for('profile', nickname=nickname))
+
+  db.session.add(u)
+  db.session.commit()
+
+  flash('You have unfollowed %s' % nickname)
+  return redirect(url_for('profile', nickname=nickname))
