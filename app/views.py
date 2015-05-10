@@ -1,26 +1,33 @@
 from flask import render_template, url_for, flash, redirect, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
 from app import app, db, lm
-from .forms import LoginForm, EditForm
-from .models import User
+from .forms import LoginForm, EditForm, PostForm
+from .models import User, User_Post
 from auth import GoogleSignIn, OAuthSignIn
+from datetime import datetime
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
   user = g.user
-  posts = [
-      {
-          'author': {'nickname': 'Andrea'},
-          'body': 'Hello, everybody!'
-      },
-      {
-          'author': {'nickname': 'Kaylene'},
-          'body': 'Hey, Andrea!'
-      }
-  ]
-  return render_template('index.html', title='Home', user=user, posts=posts)
+  posts = ""
+  
+  form = PostForm()
+
+  if form.validate_on_submit():
+    posts = User_Post(body=form.post.data, timestamp=datetime.utcnow(), author=user)
+
+    db.session.add(posts)
+    db.session.commit()
+
+    flash('Good post')
+    return redirect(url_for('index'))
+
+  if user.is_authenticated():
+    posts = user.posts
+
+  return render_template('index.html', title='Home', user=user, posts=posts, form=form)
 
 @app.before_request
 def before_request():
@@ -86,7 +93,7 @@ def logout():
 @login_required
 def profile(nickname):
   user = User.query.filter_by(nickname=nickname).first()
-  posts = ""
+  posts = user.posts
 
   if user is None:
     flash('User not found')

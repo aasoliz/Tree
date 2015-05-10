@@ -2,12 +2,17 @@ from app import db
 
 
 class User(db.Model):
+  __tablename__ = 'user'
+
   # Rows in the database for table 'User'
   id = db.Column(db.Integer, primary_key=True)
   nickname = db.Column(db.String(64), index=True, unique=True)
+  age = db.Column(db.Integer)
   email = db.Column(db.String(120), index=True, unique=True)
+  last_seen = db.Column(db.DateTime)
   about_me = db.Column(db.String(140))
-  posts = db.relationship('Post', backref='author', lazy='dynamic')
+  reputation = db.Column(db.Integer)
+  posts = db.relationship('User_Post', backref='author', lazy='dynamic')
 
   # The user is logged in
   def is_authenticated(self):
@@ -31,14 +36,26 @@ class User(db.Model):
   def __repr__(self):
     return '<User %r>' % (self.nickname)
 
+class Base_Post(db.Model):
+  __tablename__ = 'base_post'
+  __mapper_args__ = {'polymorphic_identity': 'base_post'}
 
-class Post(db.Model):
   # Rows in the database for the table 'Post'
   id = db.Column(db.Integer, primary_key=True)
   body = db.Column(db.String(140))
   timestamp = db.Column(db.DateTime)
-  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+  discriminator = db.Column('type', db.String(50))
+  __mapper_args__ = {'polymorphic_on': discriminator}
 
   # How posts are represented
   def __repr__(self):
     return '<Post %r>' % (self.body)
+
+class User_Post(Base_Post):
+  __mapper_args__ = {'polymorphic_identity': 'user_post'}
+
+  views = db.Column(db.Integer)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+  def __repr__(self):
+    return '<Post %r>' % (super(User_Post, self).body)

@@ -13,4 +13,17 @@
         {{ post.author.nickname }} says: <b>{{ post.body }}</b>
     </p>
     {% endfor %}
+    <form action="" method="post" name="post">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>Say Something:</td>
+                <td>{{ form.post(size=30, maxlength=500) }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
 {% endblock %}
