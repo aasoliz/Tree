@@ -1,10 +1,11 @@
-from flask import render_template, url_for, flash, redirect, request, g
-from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
 from app import app, db, lm
-from .forms import LoginForm, EditForm, PostForm
-from .models import User, User_Post
 from auth import GoogleSignIn, OAuthSignIn
 from datetime import datetime
+from emails import follower_notification
+from flask import render_template, url_for, flash, redirect, request, g
+from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
+from forms import LoginForm, EditForm, PostForm
+from models import User, User_Post
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -148,6 +149,7 @@ def follow(nickname):
   db.session.commit()
 
   flash('You are following %s' % nickname)
+  follower_notification(user, g.user)
   return redirect(url_for('profile', nickname=nickname))
 
 

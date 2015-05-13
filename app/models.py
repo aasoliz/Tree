@@ -1,11 +1,13 @@
 from app import db
 
+# Table for the many to many self-referential relationship of User
 follow_table = db.Table('follow_table',
   db.Column('follower', db.Integer, db.ForeignKey('user.id'), primary_key=True),
   db.Column('followee', db.Integer, db.ForeignKey('user.id'), primary_key=True)
 )
 
 class User(db.Model):
+  # Name of the table
   __tablename__ = 'user'
 
   # Rows in the database for table 'User'
@@ -17,6 +19,8 @@ class User(db.Model):
   about_me = db.Column(db.String(140))
   reputation = db.Column(db.Integer)
   posts = db.relationship('User_Post', backref='author', lazy='dynamic')
+
+  # Describes how to get the data
   followed = db.relationship('User',
     secondary=follow_table,
     primaryjoin=(follow_table.c.follower == id),
@@ -43,19 +47,25 @@ class User(db.Model):
     except NameError:
       return str(self.id)  # python 3
 
+  # Called when the user follows someone
+  # Adds current user to the table of followers for the followee
   def follow(self, user):
     if not self.is_following(user):
       self.followed.append(user)
       return self
 
+  # Called when the user unfollows someone
+  # Removes the current user from the table of followers
   def unfollow(self, user):
     if self.is_following(user):
       self.followed.remove(user)
       return self
 
+  # Is the current user following the "user"
   def is_following(self, user):
     return self.followed.filter(follow_table.c.followee == user.id).count() > 0
 
+  # How posts are represented
   def __repr__(self):
     return '<User %r>' % (self.nickname)
 
@@ -67,18 +77,23 @@ class Base_Post(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   body = db.Column(db.String(140))
   timestamp = db.Column(db.DateTime)
+
+  # Type of Base_Post
   discriminator = db.Column('type', db.String(50))
   __mapper_args__ = {'polymorphic_on': discriminator}
 
-  # How posts are represented
   def __repr__(self):
     return '<Post %r>' % (self.body)
 
+# Inherits from Base_Post adds columns "views" and a relationship with "User"
 class User_Post(Base_Post):
+
+  # Name the inheritor of "Base_Post"
   __mapper_args__ = {'polymorphic_identity': 'user_post'}
 
   views = db.Column(db.Integer)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+  # Get the post body from the parent class
   def __repr__(self):
     return '<Post %r>' % (super(User_Post, self).body)

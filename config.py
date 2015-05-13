@@ -18,3 +18,16 @@ CREDENTIALS = {
       'secret': GOOGLE_LOGIN_CLIENT_SECRET
     }
 }
+
+# Mail Server Settings
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'bry.sharp12@gmail.com'
+MAIL_PASSWORD = 'recursion0'
+MAIL_DEBUG = True
+MAIL_SUPPRESS_SEND = False
+
+# Administrator List
+ADMINS = ['bry.sharp12@gmail.com']
