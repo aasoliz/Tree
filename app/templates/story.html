@@ -9,12 +9,18 @@
     <h1> Hi, Guest!</h1>
     {% endif %}
     {% for base in bases %}
-    <p>
+    <p class="uppercase">
         Someone said: <b>{{ base.body }}</b>
-        <a href="{{ url_for('comment', base_id=base.id) }}">Comment</a><br/>
+        <a href="{{ url_for('comment', base_id=base.id) }}">Comment</a>
+        <a href="{{ url_for('base_extend', base_id=base.id) }}">Extend</a><br/>
         {% for comment in comments %}
         {% if comment.comment == base.id %}
-        Comment: {{ comment.body }}  {{ comment.timestamp }}<br/>
+        <p>Comment: {{ comment.body }}  {{ comment.timestamp }}</p><br/>
+        {% endif %}
+        {% endfor %}
+        {% for extend in extends %}
+        {% if extend.extend == base.id %}
+        Sub topic: {{ extend.body }}<br/>
         {% endif %}
         {% endfor %}
     </p>

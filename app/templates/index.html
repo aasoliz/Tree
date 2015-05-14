@@ -4,12 +4,12 @@
 
 {% block content %}
     {% if user.nickname %}
-    <h1>Hi, {{ user.nickname }}!</h1>
+    <h1 class="center">Hi, {{ user.nickname }}!</h1>
     {% else %}
     <h1> Hi, Guest!</h1>
     {% endif %}
     {% for post in posts %}
-    <p>
+    <p class="center">
         {{ post.author.nickname }} says: <b>{{ post.body }}</b>
     </p>
     {% endfor %}

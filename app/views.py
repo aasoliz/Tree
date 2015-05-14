@@ -17,7 +17,7 @@ def index():
   form = PostForm()
 
   if form.validate_on_submit():
-    post = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, discriminator='user_post', author=user)
+    post = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, extend=0, discriminator='user_post', author=user)
 
     db.session.add(post)
     db.session.commit()
@@ -200,35 +200,25 @@ def base():
   comments = ""
 
   bases = Base_Post.query.filter_by(discriminator='base_post')
-  comments = User_Post.query.filter_by(discriminator='user_post')
+  comments = User_Post.query.filter_by(discriminator='user_post', extend=0)
+  extends = User_Post.query.filter_by(discriminator='user_post', comment=0)
 
-  return render_template("story.html", bases=bases, comments=comments, user=user)
+  return render_template("story.html", bases=bases, comments=comments, extends=extends, user=user)
 
-# @app.route('/base_extend/<int:base_id>', methods=['GET', 'POST'])
-# def base_extend(base_id):
-#   form = PostForm()
+@app.route('/base_extend/<int:base_id>', methods=['GET', 'POST'])
+def base_extend(base_id):
+  form = PostForm()
 
-#   if form.validate_on_submit():
-#     extended = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, discriminator='user_post', author=g.user)
+  if form.validate_on_submit():
+    extended = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, extend=base_id, discriminator='user_post', author=g.user)
 
-#     db.session.add(extended)
-#     db.session.commit()
+    db.session.add(extended)
+    db.session.commit()
 
-#     base = Base_Post.query.filter_by(discriminator='base_post', id=base_id).first()
+    flash('You extended')
+    return redirect(url_for('base'))
 
-#     u = extended.extend_base(base)
-
-#     if u is None:
-#       flash('Post was unsuccessful')
-#       return redirect(url_for('base'))
-
-#     db.session.add(u)
-#     db.session.commit()
-
-#     flash('You extended')
-#     return redirect(url_for('base'))
-
-#   return render_template("post_edit.html", form=form)
+  return render_template("post_edit.html", form=form)
 
 
 @app.route('/comment/<int:base_id>', methods=['GET', 'POST'])
@@ -239,7 +229,7 @@ def comment(base_id):
   form = PostForm()
 
   if form.validate_on_submit():
-    comment = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=base_id, discriminator='user_post', author=g.user)
+    comment = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=base_id, extend=0, discriminator='user_post', author=g.user)
 
     db.session.add(comment)
     db.session.commit()

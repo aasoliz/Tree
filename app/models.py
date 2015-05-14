@@ -70,12 +70,6 @@ class User(db.Model):
   def __repr__(self):
     return '<User %r>' % (self.nickname)
 
-# Table for the many to many self-referential relationship of Base_Post
-# post_table = db.Table('post_table',
-#   db.Column('extend', db.Integer, db.ForeignKey('user_post.id'), primary_key=True),
-#   db.Column('base', db.Integer, db.ForeignKey('base_post.id'), primary_key=True)
-# )
-
 class Base_Post(db.Model):
   __tablename__ = 'base_post'
 
@@ -83,43 +77,12 @@ class Base_Post(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   body = db.Column(db.String(140))
   timestamp = db.Column(db.DateTime)
-  #user_post_id = db.Column(db.Integer, db.ForeignKey('user_post.id'))
-  
-  # extending = db.relationship('User_Post',
-  #   secondary='post_table',
-  #   backref=db.backref('post_table', lazy='dynamic'), lazy='dynamic')
-
-  # extending = db.relationship('Base_Post',
-  #   secondary=post_table,
-  #   primaryjoin=(post_table.c.base == id),
-  #   secondaryjoin=(post_table.c.extend == id),
-  #   backref=db.backref('post_table', lazy='dynamic'), lazy='dynamic'
-  # )
 
   # Type of Base_Post
   discriminator = db.Column('type', db.String(50))
-  __mapper_args__ = {'polymorphic_identity': 'base_post',
-    'polymorphic_on': discriminator}
-
-  # def is_BasePost(self):
-  #   return True
-
-  # def extend_base(self, base):
-  #   pass
-    # if self.is_BasePost():
-    #   flash('should not happen')
-
-    # if:
-    # base = Base_Post.query.with_polymorphic(Base_Post).filter(id == base_id).first()
-    # print base
-
-    # if base is None:
-    #   flash('Not found')
-    #   return None
-
-    # self.extending.append(base)
-
-    # return self
+  __mapper_args__ = { 'polymorphic_identity': 'base_post',
+    'polymorphic_on': discriminator
+  }
 
   def __repr__(self):
     return '<Post %r>' % (self.body)
@@ -127,19 +90,13 @@ class Base_Post(db.Model):
 # Inherits from Base_Post adds columns "views" and a relationship with "User"
 class User_Post(Base_Post):
 
-  #__tablename__ = 'user_post'
   # Name the inheritor of "Base_Post"
-  __mapper_args__ = {'polymorphic_identity': 'user_post'}
+  __mapper_args__ = { 'polymorphic_identity': 'user_post' }
 
   views = db.Column(db.Integer)
+  extend = db.Column(db.Integer, default=0)
   comment = db.Column(db.Integer, default=0)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-  # def extend_base(self, base):
-  #   self.extending.append(base)
-  #   return self
-
-    #super(User_Post, self).extend_base(base)
 
   # Get the post body from the parent class
   def __repr__(self):
