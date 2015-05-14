@@ -1,0 +1,19 @@
+<!-- extends base -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="post" name="base">
+    {{ form.hidden_tag() }}
+    <table>
+        <tr>
+            <td>Say Something:</td>
+            <td>{{ form.base(size=30, maxlength=500) }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

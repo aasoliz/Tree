@@ -15,5 +15,7 @@
         {{ post.author.nickname }} says: <b>{{ post.body }}</b>
     </p>
     {% endfor %}
+    {% if user == g.user %}
     <a href="{{ url_for('edit') }}">Edit</a>
+    {% endif %}
 {% endblock %}

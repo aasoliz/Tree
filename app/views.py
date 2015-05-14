@@ -4,8 +4,8 @@ from datetime import datetime
 from emails import follower_notification
 from flask import render_template, url_for, flash, redirect, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
-from forms import LoginForm, EditForm, PostForm
-from models import User, User_Post
+from forms import LoginForm, EditForm, PostForm, BaseForm
+from models import User, User_Post, Base_Post
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -17,9 +17,9 @@ def index():
   form = PostForm()
 
   if form.validate_on_submit():
-    posts = User_Post(body=form.post.data, timestamp=datetime.utcnow(), author=user)
+    post = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, discriminator='user_post', author=user)
 
-    db.session.add(posts)
+    db.session.add(post)
     db.session.commit()
 
     flash('Good post')
@@ -177,3 +177,74 @@ def unfollow(nickname):
 
   flash('You have unfollowed %s' % nickname)
   return redirect(url_for('profile', nickname=nickname))
+
+@app.route('/base_add', methods=['GET', 'POST'])
+@login_required
+def base_add():
+  form = BaseForm()
+
+  if form.validate_on_submit():
+    base = Base_Post(body=form.base.data, timestamp=datetime.utcnow(), discriminator='base_post')
+
+    db.session.add(base)
+    db.session.commit()
+
+    flash('You have added a story')
+    return redirect(url_for('base'))
+
+  return render_template("storyEdit.html", form=form)
+
+@app.route('/base')
+def base():
+  user = g.user 
+  comments = ""
+
+  bases = Base_Post.query.filter_by(discriminator='base_post')
+  comments = User_Post.query.filter_by(discriminator='user_post')
+
+  return render_template("story.html", bases=bases, comments=comments, user=user)
+
+# @app.route('/base_extend/<int:base_id>', methods=['GET', 'POST'])
+# def base_extend(base_id):
+#   form = PostForm()
+
+#   if form.validate_on_submit():
+#     extended = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, discriminator='user_post', author=g.user)
+
+#     db.session.add(extended)
+#     db.session.commit()
+
+#     base = Base_Post.query.filter_by(discriminator='base_post', id=base_id).first()
+
+#     u = extended.extend_base(base)
+
+#     if u is None:
+#       flash('Post was unsuccessful')
+#       return redirect(url_for('base'))
+
+#     db.session.add(u)
+#     db.session.commit()
+
+#     flash('You extended')
+#     return redirect(url_for('base'))
+
+#   return render_template("post_edit.html", form=form)
+
+
+@app.route('/comment/<int:base_id>', methods=['GET', 'POST'])
+@login_required
+def comment(base_id):
+  user = g.user
+  posts = ""
+  form = PostForm()
+
+  if form.validate_on_submit():
+    comment = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=base_id, discriminator='user_post', author=g.user)
+
+    db.session.add(comment)
+    db.session.commit()
+
+    flash('you commented')
+    return redirect(url_for('base'))
+
+  return render_template("index.html", title='Comment', user=user, posts=posts, form=form)

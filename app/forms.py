@@ -10,5 +10,9 @@ class LoginForm(Form):
 class PostForm(Form):
   post = StringField('post', validators=[DataRequired()])
 
+class BaseForm(Form):
+  # TODO: Add other fields, category, tag, ...
+  base = StringField('base', validators=[DataRequired()])
+
 class EditForm(Form):
   about_me = StringField('about_me', validators=[Length(min=0, max=140)])

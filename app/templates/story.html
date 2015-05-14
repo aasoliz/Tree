@@ -1,0 +1,22 @@
+<!-- extends base -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.nickname %}
+    <h1>Hi, {{ user.nickname }}!</h1>
+    {% else %}
+    <h1> Hi, Guest!</h1>
+    {% endif %}
+    {% for base in bases %}
+    <p>
+        Someone said: <b>{{ base.body }}</b>
+        <a href="{{ url_for('comment', base_id=base.id) }}">Comment</a><br/>
+        {% for comment in comments %}
+        {% if comment.comment == base.id %}
+        Comment: {{ comment.body }}  {{ comment.timestamp }}<br/>
+        {% endif %}
+        {% endfor %}
+    </p>
+    {% endfor %}
+{% endblock %}

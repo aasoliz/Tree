@@ -8,9 +8,10 @@
     </head>
     <body>
         <div>Microblog: <a href="/index">Home</a>
+            | <a href=" {{ url_for('base') }}"> Bases</a>
             {% if g.user.is_authenticated() %}
-            | <a href=" {{ url_for('logout') }}">Logout</a>
             | <a href=" {{ url_for('profile', nickname=g.user.nickname) }}">Profile</a>
+            | <a href=" {{ url_for('logout') }}">Logout</a>
             {% else %}
             | <a href="{{ url_for('login') }}">Login</a>
             {% endif %}
