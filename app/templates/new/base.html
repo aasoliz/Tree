@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/css/style.css') }}" />
+        {% if title %}
+            <title>{{ title }} - Branching Tree</title>
+        {% else %}
+            <title>Branching Tree</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>Branching Tree:
+            <div><a href="{{ url_for('index') }}">Home</a></div>
+            <div><a href="{{ url_for('base') }}">Stories</a></div>
+            {% if g.user.is_authenticated() %}
+                <div><a href="{{ url_for('profile', nickname=g.user.nickname) }}">Profile</a></div>
+                <div><a href="{{ url_for('logout') }}">Logout</a></div>
+            {% else %}
+                <div><a href="{{ url_for('login') }}">Login</a></div>
+            {% endif %}
+        </div>
+        <!-- Format in css -->
+        <hr>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

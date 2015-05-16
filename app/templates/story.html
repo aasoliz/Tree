@@ -15,12 +15,17 @@
         <a href="{{ url_for('base_extend', base_id=base.id) }}">Extend</a><br/>
         {% for comment in comments %}
         {% if comment.comment == base.id %}
-        <p>Comment: {{ comment.body }}  {{ comment.timestamp }}</p><br/>
+        <p>Comment: {{ comment.body }}  {{ comment.timestamp }}
+        <a href="{{ url_for('comment', base_id=base.id) }}">Comment</a><br/></p>
         {% endif %}
         {% endfor %}
         {% for extend in extends %}
         {% if extend.extend == base.id %}
-        Sub topic: {{ extend.body }}<br/>
+        <p>
+        Sub topic: {{ extend.body }}
+        <a href="{{ url_for('comment', base_id=base.id) }}">Comment</a>
+        <a href="{{ url_for('base_extend', base_id=base.id) }}">Extend</a><br/>
+        </p>
         {% endif %}
         {% endfor %}
     </p>
