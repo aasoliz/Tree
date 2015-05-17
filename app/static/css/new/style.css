@@ -1,4 +1,8 @@
-li > a {
+li {
+  display: inline-block;
+}
+
+#nav {
   padding: 1.5em;
   font-size: 15;
   font-family: sans-serif;
@@ -7,19 +11,18 @@ li > a {
   color: white;
 }
 
-li > a:hover {
+#nav:hover {
   color: #3D0066;
 }
 
-li {
-  display: inline-block;
+#nav_bar {
   width: 8em;
   margin: -0.5em 2.5em 1em -2.5em;
   text-align: center;
   position: relative;
 }
 
-li:hover {
+#nav_bar:hover {
   height: 1.1em;
   margin: -1em 2.5em -0.95em -2.5em;
   padding-top: 1em;
@@ -28,8 +31,8 @@ li:hover {
 }
 
 .profile {
-  margin-top: 0em;
-  margin-right: 0em;
+  text-align: center;
+  position: relative;
   float: right;
 }
 
@@ -42,12 +45,15 @@ li:hover {
 }
 
 img {
-  width: 100%;
-  position: static;
-  margin-top: -200px;
+  width: 10em;
+  height: 10em;
+  margin-bottom: 1em;
 }
 
 body {
+  background-image: url(../../img/907598-tree-wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-color: white;
   color: black;
 }
@@ -57,13 +63,15 @@ h1 {
   font-family: Verdana, Lucida Console;
   text-transform: capitalize;
   margin-top: 2em;
-  position: static;
+  color: black;
+  position: relative;
 }
 
 nav {
   position: fixed;
   width: 100%;
   margin-top: -3.5em;
+  z-index: 2;
 }
 
 .header {
@@ -71,10 +79,10 @@ nav {
   height: 3em;
   /*background-color: #3D0066;*/
   background-image: -webkit-gradient(linear, 0% 0%, 125% 0%, from(#3D0066), to(#121212));
-/*  background-image: -webkit-linear-gradient(left, #3D0066, #121212); */
-  /*background-image:    -moz-linear-gradient(left, #3D0066, #121212);
+  background-image: -webkit-linear-gradient(left, #3D0066, #121212); 
+  background-image:    -moz-linear-gradient(left, #3D0066, #121212);
   background-image:     -ms-linear-gradient(left, #3D0066, #121212);
-  background-image:      -o-linear-gradient(left, #3D0066, #121212);*/
+  background-image:      -o-linear-gradient(left, #3D0066, #121212);
   
   /* Drop Shadow with blur */
   /*box-shadow: 7px 7px 8px #000000; 
@@ -91,11 +99,6 @@ nav {
   padding: 20px;
 }
 
-p {
-  text-align: center;
-  font-size: 20px;
-}
-
 .addstory {
   float: right;
   font-size: 30px;
@@ -110,4 +113,160 @@ p {
   border: 2px solid black;
   background-color: blue;
   margin-top: 10em;
+}
+
+td div {
+  border: 4px solid #3D0066;
+  margin-right: 3em;
+  margin-bottom: 3em;
+  background: rgba(61, 0, 102, 0.6);
+  border-radius: 10px;
+  width: 20em;
+  height: 20em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Cross browser support (FlexBox) */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+td div:hover {
+  background: rgba(61, 0, 102, 1);
+}
+
+p {
+  color: #E6E6E6;
+  text-align: center;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#sidebar {
+  background-color: rgba(61, 0, 102, 0.4);
+  border-radius: 10px;
+  height: 11em;
+  width: 14em;
+  margin-top: 3em;
+  margin-left: -5.2em;
+  padding: 0.5em 0em -1em 0em;
+  float: left;
+  display: inline-block;
+}
+
+nav > a {
+  margin-top: 0.25em;
+  margin-left: 0.2em;
+  margin-right: 5em;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  color: #E6E6E6;
+}
+
+.button {
+  width: 10em;
+  height: 34px;
+  border-radius: 8px 0px 0px 8px;
+  -webkit-border-radius: 8px 0px 0px 8px;
+  float: left;
+  position:relative;
+  background: blue;
+  line-height: 30px;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3D0066), to(#121212));
+  background-image: -webkit-linear-gradient(top, #3D0066, #121212); 
+  background-image:    -moz-linear-gradient(top, #3D0066, #121212);
+  background-image:     -ms-linear-gradient(top, #3D0066, #121212);
+  background-image:      -o-linear-gradient(top, #3D0066, #121212);
+}
+.button:after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  background: blue;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  position: absolute;
+  top: 0.2em;
+  right: -0.6em;
+  z-index: -1;
+  background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, from(#3D0066), to(#121212));
+  background-image: -webkit-linear-gradient(top left, #3D0066, #121212); 
+  background-image:    -moz-linear-gradient(top left, #3D0066, #121212);
+  background-image:     -ms-linear-gradient(top left, #3D0066, #121212);
+  background-image:      -o-linear-gradient(top left, #3D0066, #121212);
+}
+
+.middle {
+  width: 29em;
+  height: 5em;
+  margin-top: 2em;
+  margin-left: -0.6em;
+  padding-left: 1em;
+  display: block;
+  border: 2px solid #E6E6E6;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.6);
+  position: relative;
+  float: left;
+  color: white;
+  font-size: 25px;
+  text-decoration: underline;
+
+  display: flex;
+  align-items: center;
+
+  /* Cross browser support (FlexBox) */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+span {
+  text-align: center;
+  margin-left: 18.5em;
+}
+
+.regular {
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+
+#box {
+  margin-top: -10em;
+  margin-left: 20em;
+  position: absolute;
+  border-radius: 20px;
+  background: rgba(61, 0, 102, 0.4);
+  width: 50em;
+  height: 60em;
+}
+
+#footer {
+  position: relative;
+  margin-top: 60em;
+  width: 100%;
+  height: 3em;
+  background-color: transparent;
 }

@@ -13,16 +13,16 @@
         <nav>
             <div class="header" >
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('base') }}">Stories</a></li>
+                    <li id="nav_bar"><a id="nav" href="{{ url_for('index') }}">Home</a></li>
+                    <li id="nav_bar"><a id="nav" href="{{ url_for('base') }}">Stories</a></li>
                     {% if g.user.is_authenticated() %}
-                        <li class="profile"><a href="{{ url_for('profile', nickname=g.user.nickname) }}">Profile
+                        <li class="profile"><a id="nav" href="{{ url_for('profile', nickname=g.user.nickname, page='About') }}">Profile
                             </a></li>
-                            <ul>
-                                <li id="logout"><a href="{{ url_for('logout') }}">Logout</a></li>
-                            </ul>
+                            <!-- Take out for now <ul>
+                                <li id="nav_bar" id="logout"><a id="nav" href="{{ url_for('logout') }}">Logout</a></li>
+                            </ul> -->
                     {% else %}
-                        <li class="profile"><a href="{{ url_for('login') }}">Login</a></li>
+                        <li class="profile"><a id="nav" href="{{ url_for('login') }}">Login</a></li>
                     {% endif %}
                 </ul>
             </div>

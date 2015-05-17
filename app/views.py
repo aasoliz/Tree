@@ -95,17 +95,20 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/profile/<nickname>')
+@app.route('/profile/<nickname>/<page>')
 @login_required
-def profile(nickname):
+def profile(nickname, page):
   user = User.query.filter_by(nickname=nickname).first()
   posts = user.posts
+
+  if not page:
+    page = 'About'
 
   if user is None:
     flash('User not found')
     return redirect(url_for('index'))
 
-  return render_template("profile.html", user=user, posts=posts)
+  return render_template("profile.html", page=page, user=user, posts=posts)
 
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required

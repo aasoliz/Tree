@@ -9,23 +9,17 @@
     {% else %}
         <h1>Hi, Guest!</h1>
     {% endif %}
-    {% for post in posts %}
-        <p>
-            {{ post.author.nickname }} says: <b>{{ post.body }}</b>
-        </p>
-    {% endfor %}
-    <form action="" method="post" name="post">
-        {{ form.hidden_tag() }}
-        <table>
-            <tr>
-                <td>Say Something:</td>
-                <td>{{ form.post(size=30, maxlength=500) }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Submit"></td>
-            </tr>
-        </table>
-    </form>
-    <a href="{{ url_for('base_add') }}">Add a Story</a>
+    <table>
+        <tr>
+            <td><div><p>Action/Adventure</p></div></td>
+            <td><div><p>History</p></div></td>
+            <td><div><p>Horror</p></div></td>
+        </tr>
+        <tr>
+            <td><div><p>Mystery/Thriller<br>/Suspense</p></div></td>
+            <td><div><p>Romance</p></div></td>
+            <td><div><p>SciFi/Fantasy</p></div></td>
+        </tr>
+    </table>
+    <a class="addstory" href="{{ url_for('base_add') }}">Add a Story</a>
 {% endblock %}
