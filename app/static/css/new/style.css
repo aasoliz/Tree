@@ -67,6 +67,13 @@ h1 {
   position: relative;
 }
 
+h2 {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-top: 1em;
+  color: white;
+}
+
 nav {
   position: fixed;
   width: 100%;
@@ -143,6 +150,29 @@ td div:hover {
   background: rgba(61, 0, 102, 1);
 }
 
+#fav {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+}
+
+#cont_cont {
+  margin-top: -10em;
+  margin-left: 20em;
+  position: absolute;
+  color: white;
+}
+
+#cont {
+  width: 10em;
+  height: 10em;
+  margin-top: 2em;
+  margin-bottom: 0.3em;
+}
+
+#p_cont {
+  font-size: 20px;
+}
+
 p {
   color: #E6E6E6;
   text-align: center;
@@ -215,7 +245,7 @@ nav > a {
 .middle {
   width: 29em;
   height: 5em;
-  margin-top: 2em;
+  margin-top: 0.5em;
   margin-left: -0.6em;
   padding-left: 1em;
   display: block;
@@ -241,6 +271,14 @@ nav > a {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+
+.second {
+  position: relative;
+  float: left;
+  text-align: center;
+  margin-left: 18.5em;
+  font-size: 20px;
 }
 
 span {
@@ -269,4 +307,44 @@ span {
   width: 100%;
   height: 3em;
   background-color: transparent;
+}
+
+.login {
+  margin-top: 2em;
+  position: relative;
+  border-radius: 20px;
+  background: rgba(61, 0, 102, 0.4);
+  width: 30em;
+  height: 20em;
+}
+
+.align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Cross browser support (FlexBox) */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+#img_sign {
+  margin-top: 4em;
+  width: 20em;
+  height: 4em;
+  border: 2px solid #E6E6E6;
+  border-radius: 15px;
+  margin-bottom: -0.3em;
+}
+
+div > a {
+  margin-left: 5em;
+  padding-top: 3em;
 }
