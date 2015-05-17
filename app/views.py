@@ -117,6 +117,8 @@ def edit():
 
   if form.validate_on_submit():
     g.user.about_me = form.about_me.data
+    g.user.birthday = form.birthday.data
+    g.user.emails = form.emails.data
 
     db.session.add(g.user)
     db.session.commit()
@@ -240,4 +242,4 @@ def comment(base_id):
     flash('you commented')
     return redirect(url_for('base'))
 
-  return render_template("index.html", title='Comment', user=user, posts=posts, form=form)
+  return render_template("post_edit.html", form=form)

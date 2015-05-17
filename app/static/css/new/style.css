@@ -309,7 +309,7 @@ span {
   background-color: transparent;
 }
 
-.login {
+.boxes {
   margin-top: 2em;
   position: relative;
   border-radius: 20px;
@@ -347,4 +347,20 @@ span {
 div > a {
   margin-left: 5em;
   padding-top: 3em;
+}
+
+.date {
+  font-size: 20px;
+}
+
+textarea {
+  height: 10em;
+  width: 20em;
+}
+
+#fields {
+  color: #E6E6E6;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  padding-left: 1em;
 }

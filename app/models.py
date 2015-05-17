@@ -16,9 +16,11 @@ class User(db.Model):
   nickname = db.Column(db.String(64), index=True, unique=True)
   age = db.Column(db.Integer)
   email = db.Column(db.String(120), index=True, unique=True)
+  birthday = db.Column(db.Date)
   last_seen = db.Column(db.DateTime)
   about_me = db.Column(db.String(140))
-  reputation = db.Column(db.Integer)
+  reputation = db.Column(db.Integer, default=0)
+  emails = db.Column(db.Boolean, default=True)
   posts = db.relationship('User_Post', backref='author', lazy='dynamic')
 
   # Describes how to get the data
@@ -77,6 +79,7 @@ class Base_Post(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   body = db.Column(db.String(140))
   timestamp = db.Column(db.DateTime)
+  category = db.Column(db.String)
 
   # Type of Base_Post
   discriminator = db.Column('type', db.String(50))
