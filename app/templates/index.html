@@ -9,17 +9,28 @@
     {% else %}
         <h1>Hi, Guest!</h1>
     {% endif %}
-    <table>
+    <table class="align">
         <tr>
-            <td><div><p>Action/Adventure</p></div></td>
-            <td><div><p>History</p></div></td>
-            <td><div><p>Horror</p></div></td>
+            <td><div>
+                <a style="padding: 5em 2em 5em 1.5em" class="category" href="{{ url_for('base', category='action') }}">Action/Adventure</a>
+            </div></td>
+            <td><div>
+                <a style="padding: 5em 3.5em 5em 3.5em" class="category" href="{{ url_for('base', category='history') }}">History</a>
+            </div></td>
+            <td><div>
+                <a style="padding: 5em 3.7em 5em 3.7em" class="category" href="{{ url_for('base', category='horror') }}">Horror</a>
+            </div></td>
         </tr>
         <tr>
-            <td><div><p>Mystery/Thriller<br>/Suspense</p></div></td>
-            <td><div><p>Romance</p></div></td>
-            <td><div><p>SciFi/Fantasy</p></div></td>
+            <td><div>
+                <a style="padding: 4em 5em 4em 2em" class="category" href="{{ url_for('base', category='mystery') }}">Mystery/Thriller</br>&nbsp;&nbsp;&nbsp;&nbsp;/Suspense</a>
+            </div></td>
+            <td><div>
+                <a style="padding: 5em 3em 5em 3em" class="category" href="{{ url_for('base', category='romance') }}">Romance</a>
+            </div></td>
+            <td><div>
+                <a style="padding: 5em 2em 5em 2em" class="category" href="{{ url_for('base', category='scifi') }}">SciFi/Fantasy</a>
+            </div></td>
         </tr>
     </table>
-    <a class="addstory" href="{{ url_for('base_add') }}">Add a Story</a>
 {% endblock %}

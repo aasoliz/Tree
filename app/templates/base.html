@@ -10,11 +10,11 @@
         {% endif %}
     </head>
     <body>
-        <nav>
+        <nav id="nav_top">
             <div class="header" >
                 <ul>
                     <li id="nav_bar"><a id="nav" href="{{ url_for('index') }}">Home</a></li>
-                    <li id="nav_bar"><a id="nav" href="{{ url_for('base') }}">Stories</a></li>
+                    <li id="nav_bar"><a id="nav" href="{{ url_for('base_add') }}">Add</a></li>
                     {% if g.user.is_authenticated() %}
                         <li class="profile"><a id="nav" href="{{ url_for('profile', nickname=g.user.nickname, page='About') }}">Profile
                             </a></li>
@@ -27,6 +27,7 @@
                 </ul>
             </div>
         </nav>
+        <div style="margin-top: 4em; height: 1px;"></div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul>

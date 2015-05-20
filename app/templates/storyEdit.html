@@ -10,6 +10,10 @@
         {{ form.hidden_tag() }}
         <table class="boxes">
             <tr>
+                <td id="fields">Title: </td>
+                <td>{{ form.title(size=32, maxlength=50) }}</td>
+            </tr>
+            <tr>
                 <td id="fields">Say Something: </td>
                 <td>{{ form.base(size=30, maxlength=1000) }}</td>
             </tr>

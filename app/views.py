@@ -1,34 +1,20 @@
 from app import app, db, lm
 from auth import GoogleSignIn, OAuthSignIn
-from datetime import datetime
+from datetime import datetime, date
 from emails import follower_notification
 from flask import render_template, url_for, flash, redirect, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required, LoginManager
 from forms import LoginForm, EditForm, PostForm, BaseForm
 from models import User, User_Post, Base_Post
+from dateutil.parser import *
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/')
+@app.route('/index')
 def index():
   user = g.user
-  posts = ""
-  
-  form = PostForm()
 
-  if form.validate_on_submit():
-    post = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, extend=0, discriminator='user_post', author=user)
-
-    db.session.add(post)
-    db.session.commit()
-
-    flash('Good post')
-    return redirect(url_for('index'))
-
-  if user.is_authenticated():
-    posts = user.posts
-
-  return render_template('index.html', title='Home', user=user, posts=posts, form=form)
+  return render_template('index.html', title='Home', user=user)
 
 @app.before_request
 def before_request():
@@ -36,12 +22,7 @@ def before_request():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-  form = LoginForm()
-  if form.validate_on_submit():
-      flash('Login requested for userID="%s", remember_me=%s' %
-            (form.loginID.data, str(form.remember_me.data)))
-      return redirect(url_for('index'))
-  return render_template('login.html', title='Sign In', form=form)
+  return render_template('login.html', title='Sign In')
 
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
@@ -84,6 +65,11 @@ def oauth_callback(provider):
     # Log in the user, by default remembering them for their next visit
     # unless they log out.
     login_user(user, remember=True)
+
+    user.last_seen = datetime.now()
+    db.session.add(user)
+    db.session.commit()
+
     return redirect(url_for('index'))
 
 @lm.user_loader
@@ -92,8 +78,8 @@ def load_user(id):
 
 @app.route('/logout')
 def logout():
-    logout_user()
-    return redirect(url_for('index'))
+  logout_user()
+  return redirect(url_for('index'))
 
 @app.route('/profile/<nickname>/<page>')
 @login_required
@@ -124,11 +110,25 @@ def edit():
     db.session.commit()
 
     flash('Saved Changes')
-    return redirect(url_for('edit'))
+    return redirect(url_for('profile', nickname=g.user.nickname))
 
   else:
     form.about_me = form.about_me
+    form.birthday = form.birthday
+    form.emails = form.emails
 
+  print type(form.birthday)
+  print form.birthday.date().strftime('on %m/%d/%y')
+
+  # print 'form %s' % (form.about_me.data)
+  # print form.emails
+  
+  # print str(form.birthday.data)
+  # t = parse(form.birthday.data)
+
+  # print t.date().strftime('%d/%m/%y')
+
+  flash('hey')
   return render_template('edit.html', form=form)
 
 @app.route('/follow/<nickname>')
@@ -189,39 +189,51 @@ def base_add():
   form = BaseForm()
 
   if form.validate_on_submit():
-    base = Base_Post(body=form.base.data, timestamp=datetime.utcnow(), discriminator='base_post')
+    body_len = len(form.base.data)
+
+    if body_len > 140:
+      base = Base_Post(title=form.title.data, body=form.base.data, description=form.base.data[0:140], timestamp=datetime.utcnow(), category=form.category.data, discriminator='base_post')
+    else:
+      base = Base_Post(title=form.title.data, body=form.base.data, description=form.base.data, timestamp=datetime.utcnow(), category=form.category.data, discriminator='base_post')
 
     db.session.add(base)
     db.session.commit()
 
     flash('You have added a story')
-    return redirect(url_for('base'))
+
+    # Change so that it goes to the page where the user can see the story
+    # For now go to story category
+    return redirect(url_for('base', category=form.category.data))
 
   return render_template("storyEdit.html", form=form)
 
-@app.route('/base')
-def base():
+@app.route('/base/<category>')
+def base(category):
   user = g.user 
-  comments = ""
 
-  bases = Base_Post.query.filter_by(discriminator='base_post')
-  comments = User_Post.query.filter_by(discriminator='user_post', extend=0)
-  extends = User_Post.query.filter_by(discriminator='user_post', comment=0)
+  bases = Base_Post.query.filter_by(discriminator='base_post', category=category)
 
-  return render_template("story.html", bases=bases, comments=comments, extends=extends, user=user)
+  return render_template("story.html", bases=bases)
 
 @app.route('/base_extend/<int:base_id>', methods=['GET', 'POST'])
 def base_extend(base_id):
   form = PostForm()
 
   if form.validate_on_submit():
-    extended = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=0, extend=base_id, discriminator='user_post', author=g.user)
+    category = Base_Post.query.filter_by(id=base_id).first().category
+
+    body_len = len(form.post.data)
+
+    if body_len > 140:
+      extended = User_Post(body=form.post.data, description=form.post.data[0:140], timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
+    else:
+      extended = User_Post(body=form.post.data, description=form.post.data, timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
 
     db.session.add(extended)
     db.session.commit()
 
     flash('You extended')
-    return redirect(url_for('base'))
+    return redirect(url_for('base', category=category))
 
   return render_template("post_edit.html", form=form)
 
@@ -234,12 +246,24 @@ def comment(base_id):
   form = PostForm()
 
   if form.validate_on_submit():
-    comment = User_Post(body=form.post.data, timestamp=datetime.utcnow(), comment=base_id, extend=0, discriminator='user_post', author=g.user)
+    category = Base_Post.query.filter_by(id=base_id).first().category
+    
+    comment = User_Post(body=form.post.data, description=form.post.data, timestamp=datetime.utcnow(), category=category, comment=base_id, extend=0, discriminator='user_post', author=g.user)
 
     db.session.add(comment)
     db.session.commit()
 
     flash('you commented')
-    return redirect(url_for('base'))
+    return redirect(url_for('base', category=category))
 
   return render_template("post_edit.html", form=form)
+
+@app.route('/story/<int:base_id>')
+def story(base_id):
+
+  base = Base_Post.query.filter_by(id=base_id).first()
+
+  comments = User_Post.query.filter_by(discriminator='user_post', comment=base_id, extend=0)
+  extends = User_Post.query.filter_by(discriminator='user_post', extend=base_id, comment=0)
+
+  return render_template('specific.html', base=base, comments=comments, extends=extends)

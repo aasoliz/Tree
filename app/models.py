@@ -1,6 +1,8 @@
 from app import db
 from flask import flash
 
+import re
+
 # Table for the many to many self-referential relationship of User
 follow_table = db.Table('follow_table',
   db.Column('follower', db.Integer, db.ForeignKey('user.id'), primary_key=True),
@@ -68,6 +70,9 @@ class User(db.Model):
   def is_following(self, user):
     return self.followed.filter(follow_table.c.followee == user.id).count() > 0
 
+  def seen_last(self):
+    return self.last_seen.strftime('on %m/%d/%y at %I:%M')
+
   # How posts are represented
   def __repr__(self):
     return '<User %r>' % (self.nickname)
@@ -77,7 +82,9 @@ class Base_Post(db.Model):
 
   # Rows in the database for the table 'Post'
   id = db.Column(db.Integer, primary_key=True)
-  body = db.Column(db.String(140))
+  title = db.Column(db.String(50))
+  body = db.Column(db.String(500))
+  description = db.Column(db.String(140))
   timestamp = db.Column(db.DateTime)
   category = db.Column(db.String)
 
@@ -96,7 +103,7 @@ class User_Post(Base_Post):
   # Name the inheritor of "Base_Post"
   __mapper_args__ = { 'polymorphic_identity': 'user_post' }
 
-  views = db.Column(db.Integer)
+  views = db.Column(db.Integer, default=0)
   extend = db.Column(db.Integer, default=0)
   comment = db.Column(db.Integer, default=0)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

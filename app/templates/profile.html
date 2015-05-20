@@ -5,30 +5,33 @@
 
 {% block content %}
     <h1>Profile For, {{ user.nickname }}!</h1>
-    <img src="https://pbs.twimg.com/profile_images/960696059/PIC_logo.jpg" /></br>
-    {% if g.user.is_following(user) %}
-        <a class="regular" href="{{ url_for('unfollow', nickname=user.nickname) }}">Unfollow</a>
-    {% else %}
-        <a class="regular" href="{{ url_for('follow', nickname=user.nickname) }}">Follow</a>
-    {% endif %}
-    {% if user == g.user %}
-        <a class="regular" href="{{ url_for('edit') }}">Edit</a>
-    {% endif %}
-    <!-- Each index goes to profile url with page -->
-    <nav id="sidebar">
-        <a href="{{ url_for('profile', nickname=user.nickname, page='About') }}">
-            <div class="button">About</div>
-        </a>
-        <a href="{{ url_for('profile', nickname=user.nickname, page='Contributions') }}">
-            <div class="button">Contributions</div>
-        </a>
-        <a href="{{ url_for('profile', nickname=user.nickname, page='Followers') }}">
-            <div class="button">Followers</div>
-        </a>
-        <a href="{{ url_for('profile', nickname=user.nickname, page='Favorites') }}">
-            <div class="button">Favorites</div>
-        </a>
-    </nav>
+    <div style="position: fixed; margin-top: -3em;">
+        <img style="margin-left: 1em" src="https://pbs.twimg.com/profile_images/960696059/PIC_logo.jpg" /></br>
+        <p id="small"><em>Last seen <em>{{ user.seen_last() }}</p>
+        {% if g.user.is_following(user) %}
+            <a class="regular" href="{{ url_for('unfollow', nickname=user.nickname) }}">Unfollow</a>
+        {% else %}
+            <a class="regular" href="{{ url_for('follow', nickname=user.nickname) }}">Follow</a>
+        {% endif %}
+        {% if user == g.user %}
+            <a class="regular" href="{{ url_for('edit') }}">Edit</a>
+        {% endif %}
+        <!-- Each index goes to profile url with page -->
+        <nav id="sidebar">
+            <a href="{{ url_for('profile', nickname=user.nickname, page='About') }}">
+                <div class="button">About</div>
+            </a>
+            <a href="{{ url_for('profile', nickname=user.nickname, page='Contributions') }}">
+                <div class="button">Contributions</div>
+            </a>
+            <a href="{{ url_for('profile', nickname=user.nickname, page='Followers') }}">
+                <div class="button">Followers</div>
+            </a>
+            <a href="{{ url_for('profile', nickname=user.nickname, page='Favorites') }}">
+                <div class="button">Favorites</div>
+            </a>
+        </nav>
+    </div>
     {% if page == "Contributions" %}
         {% include 'contributions.html' %}
     {% elif page == "Followers" %}
