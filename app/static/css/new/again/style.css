@@ -1,0 +1,10 @@
+.nav {
+  background: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.header {
+  display: inline-flex;
+}

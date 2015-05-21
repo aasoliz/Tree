@@ -3,8 +3,10 @@
 <div id="box">
     <h2>Followers</h2>
     <ul>
-        <li class="middle"><div>Nickname: </br>About: </div><div class="second">{{ user.nickname }} </br>{{ user.about_me }}</div>
-        </li>
+        {% for follower in user.followed %}
+            <li class="middle"><div>Nickname: </br>About: </div><div class="second">{{ follower.nickname }} </br>{{ follower.about_me }}</div>
+            </li>
+        {% endfor %}
     </ul>
 </div>
 <div id="footer"></div>

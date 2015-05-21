@@ -11,7 +11,7 @@
         <a id="ahover" href="{{ url_for('story', base_id=base.id) }}">
             <li id="ahover" class="middle2">
                 <h3>{{ base.title }}</h3>
-                <p>{{ base.description }}...</p>
+                <p>{{ base.description }}</p>
                 <a class="comment" href="{{ url_for('base_extend', base_id=base.id) }}">Extend</a>
                 <a class="comment" href="{{ url_for('comment', base_id=base.id) }}">Comment</a>
             </li>

@@ -11,23 +11,21 @@
     </head>
     <body>
         <nav id="nav_top">
-            <div class="header" >
-                <ul>
-                    <li id="nav_bar"><a id="nav" href="{{ url_for('index') }}">Home</a></li>
-                    <li id="nav_bar"><a id="nav" href="{{ url_for('base_add') }}">Add</a></li>
-                    {% if g.user.is_authenticated() %}
-                        <li class="profile"><a id="nav" href="{{ url_for('profile', nickname=g.user.nickname, page='About') }}">Profile
-                            </a></li>
-                            <!-- Take out for now <ul>
-                                <li id="nav_bar" id="logout"><a id="nav" href="{{ url_for('logout') }}">Logout</a></li>
-                            </ul> -->
-                    {% else %}
-                        <li class="profile"><a id="nav" href="{{ url_for('login') }}">Login</a></li>
-                    {% endif %}
-                </ul>
-            </div>
+            <ul class="nav">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('base_add') }}">Add</a></li>
+                {% if g.user.is_authenticated() %}
+                    <li><a href="{{ url_for('profile', nickname=g.user.nickname, page='About') }}">Profile
+                        </a></li>
+                        <!-- Take out for now <ul>
+                            <li id="logout"><a href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul> -->
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
         </nav>
-        <div style="margin-top: 4em; height: 1px;"></div>
+        <div style="height: 1px;"></div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul>

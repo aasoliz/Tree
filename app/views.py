@@ -192,7 +192,7 @@ def base_add():
     body_len = len(form.base.data)
 
     if body_len > 140:
-      base = Base_Post(title=form.title.data, body=form.base.data, description=form.base.data[0:140], timestamp=datetime.utcnow(), category=form.category.data, discriminator='base_post')
+      base = Base_Post(title=form.title.data, body=form.base.data, description=form.base.data[0:140] + '...', timestamp=datetime.utcnow(), category=form.category.data, discriminator='base_post')
     else:
       base = Base_Post(title=form.title.data, body=form.base.data, description=form.base.data, timestamp=datetime.utcnow(), category=form.category.data, discriminator='base_post')
 
@@ -225,7 +225,7 @@ def base_extend(base_id):
     body_len = len(form.post.data)
 
     if body_len > 140:
-      extended = User_Post(body=form.post.data, description=form.post.data[0:140], timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
+      extended = User_Post(body=form.post.data, description=form.post.data[0:140] + '...', timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
     else:
       extended = User_Post(body=form.post.data, description=form.post.data, timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
 

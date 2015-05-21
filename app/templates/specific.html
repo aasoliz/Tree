@@ -11,10 +11,12 @@
         <a class="comment" href="{{ url_for('comment', base_id=base.id) }}">Comment</a>
     </p>
     {% for extend in extends %}
-        <p style="margin-left: 1em;" class="middle2">{{ extend.description }}</br>
-            <a class="comment" href="{{ url_for('base_extend', base_id=extend.id) }}">Extend</a>
-            <a class="comment" href="{{ url_for('comment', base_id=extend.id) }}">Comment</a>
-        </p>
+        <a id="hov" href="{{ url_for('story', base_id=extend.id) }}">
+            <p style="margin-left: 1em;" class="middle2">{{ extend.description }}</br>
+                <a class="comment" href="{{ url_for('base_extend', base_id=extend.id) }}">Extend</a>
+                <a class="comment" href="{{ url_for('comment', base_id=extend.id) }}">Comment</a>
+            </p>
+        </a>
     {% endfor %}
     {% for comment in comments %}
         <p style="margin-left: 1em;" class="middle2">{{ comment.body }}</br>
