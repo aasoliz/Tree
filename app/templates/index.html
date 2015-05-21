@@ -10,25 +10,25 @@
         <h1>Hi, Guest!</h1>
     {% endif %}
     <table>
-        <tr class="boxes">
-            <td>
+        <tr class="container">
+            <td class="boxes">
                 <a href="{{ url_for('base', category='action') }}">Action/Adventure</a>
             </td>
-            <td>
+            <td class="boxes">
                 <a href="{{ url_for('base', category='history') }}">History</a>
             </td>
-            <td>
+            <td class="boxes">
                 <a href="{{ url_for('base', category='horror') }}">Horror</a>
             </td>
         </tr>
-        <tr class="boxes">
-            <td>
+        <tr class="container">
+            <td class="boxes">
                 <a href="{{ url_for('base', category='mystery') }}">Mystery/Thriller</br>/Suspense</a>
             </td>
-            <td>
+            <td class="boxes">
                 <a href="{{ url_for('base', category='romance') }}">Romance</a>
             </td>
-            <td>
+            <td class="boxes">
                 <a href="{{ url_for('base', category='scifi') }}">SciFi/Fantasy</a>
             </td>
         </tr>

@@ -11,7 +11,7 @@
   padding: 0;
   margin-top: -0.5em;
   margin-left: -0.5em;
-  border-bottom: 2px solid #4E4E4E;
+  border-bottom: 2px solid #009900;
   
   display: -webkit-box;
   display: -moz-box;
@@ -52,7 +52,8 @@ body {
   background-size: cover;
 }
 
-.boxes {
+.container {
+  border: 2px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -64,7 +65,13 @@ body {
   align-items: center;
 }
 
-.boxes td {
+.container tr {
+  display: inline-flex;
+
+  margin: 2em;
+}
+
+.boxes {
   width: 20em;
   height: 20em;
   margin: 2em;
@@ -78,11 +85,11 @@ body {
   display: -webkit-flex;
   display: flex;
 
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
-.boxes td:hover {
+.boxes:hover {
   background: #009900;
 }
 
@@ -95,6 +102,131 @@ body {
   text-align: center;
   text-decoration: none;
 }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img {
+  width: 10em;
+  height: 10em;
+  margin-top: 1em;
+  margin-left: 4em;
+  margin-bottom: 1em;
+}
+
+#left_profile {
+  background: rgba(50, 50, 50, 0.8);
+  border-radius: 10px;
+}
+
+#left_profile a {
+  margin-left: 4.5em;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+}
+
+#left_profile nav {
+  border-radius: 10px;
+  margin-top: 1.5em;
+}
+
+#left_profile nav a {
+  width: 15em;
+  height: 2em;
+  border-radius: 20px;
+  margin: 1em;
+  margin-left: 1.8em;
+  background: #009900;
+
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+
+/*#sidebar a div {
+  margin-top: 2em;
+  width: 10em;
+  height: 3.1em;
+  border-radius: 10px;
+  background: #009900;
+}
+
+#sidebar a div:after {
+  content: "";
+  width: 0;
+  height: 0;
+
+  margin-left: 10em;
+  border-top: 1em solid transparent;
+  border-bottom: 1em solid transparent;
+
+  border-left: 1em solid blue;
+}
+*/
+
+/*#sidebar a div {
+  width: 10em;
+  height: 34px;
+
+  margin-bottom: 2em;
+  background: #009900;
+  border-radius: 8px 0px 0px 8px;
+  -webkit-border-radius: 8px 0px 0px 8px;
+  position:relative;
+  line-height: 30px;
+}*/
+/*#sidebar a div:after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  position: absolute;
+  top: 0.2em;
+  right: -0.6em;
+  z-index: -1;
+  background: #009900;
+}*/
+/*
+nav > a {
+  margin-top: 0.25em;
+  margin-left: 0.2em;
+  margin-right: 5em;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  color: #E6E6E6;
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -123,11 +255,6 @@ h2 {
   color: white;
 }
 
-img {
-  width: 10em;
-  height: 10em;
-  margin-bottom: 1em;
-}
 
 .divp {
   border: 2px solid black;
@@ -139,44 +266,6 @@ img {
   background-color: blue;
   margin-top: 10em;
 }
-
-/*.category {
-  color: #E6E6E6;
-  font-size: 30px;
-  font-family: Arial, sans-serif;
-  text-decoration: none;
-  margin-left: 0em;
-  margin-top: 0em;
-  padding: 0em;
-}*/
-
-/*td div {
-  border: 4px solid #3D0066;
-  margin-right: 3em;
-  margin-bottom: 3em;
-  background: rgba(61, 0, 102, 0.6);
-  border-radius: 10px;
-  width: 20em;
-  height: 20em;
-  display: flex;
-  justify-content: center;
-  align-items: center;*/
-
-  /* Cross browser support (FlexBox) */
-/*  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-td div:hover {
-  background: rgba(61, 0, 102, 1);
-}*/
 
 #fav {
   font-size: 20px;
@@ -208,70 +297,8 @@ td div:hover {
   font-family: Arial, sans-serif;
 }*/
 
-table {
-  margin-left: auto;
-  margin-right: auto;
-}
 
-#sidebar {
-  background-color: rgba(61, 0, 102, 0.4);
-  border-radius: 10px;
-  height: 11em;
-  width: 14em;
-  margin-top: 1.5em;
-  margin-left: -0.5em;
-  padding: 0.5em 0em -1em 0em;
-  float: left;
-  clear: left;
-  display: inline-block;
-}
-
-nav > a {
-  margin-top: 0.25em;
-  margin-left: 0.2em;
-  margin-right: 5em;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  font-family: Arial, sans-serif;
-  color: #E6E6E6;
-}
-
-.button {
-  width: 10em;
-  height: 34px;
-  border-radius: 8px 0px 0px 8px;
-  -webkit-border-radius: 8px 0px 0px 8px;
-  float: left;
-  position:relative;
-  background: blue;
-  line-height: 30px;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3D0066), to(#121212));
-  background-image: -webkit-linear-gradient(top, #3D0066, #121212); 
-  background-image:    -moz-linear-gradient(top, #3D0066, #121212);
-  background-image:     -ms-linear-gradient(top, #3D0066, #121212);
-  background-image:      -o-linear-gradient(top, #3D0066, #121212);
-}
-.button:after {
-  content: "";
-  width: 25px;
-  height: 25px;
-  background: blue;
-  -moz-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  position: absolute;
-  top: 0.2em;
-  right: -0.6em;
-  z-index: -1;
-  background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, from(#3D0066), to(#121212));
-  background-image: -webkit-linear-gradient(top left, #3D0066, #121212); 
-  background-image:    -moz-linear-gradient(top left, #3D0066, #121212);
-  background-image:     -ms-linear-gradient(top left, #3D0066, #121212);
-  background-image:      -o-linear-gradient(top left, #3D0066, #121212);
-}
-
-.middle {
+/*.middle {
   width: 29em;
   height: 5em;
   margin-top: 0.5em;
@@ -291,7 +318,7 @@ nav > a {
   align-items: center;
 
   /* Cross browser support (FlexBox) */
-  display: -webkit-box;
+/*  display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
@@ -300,7 +327,7 @@ nav > a {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
-}
+}*/
 
 .second {
   position: relative;
@@ -315,7 +342,7 @@ span {
   margin-left: 15em;
 }
 
-.regular {
+/*.regular {
   color: #E6E6E6;
   font-family: Arial, sans-serif;
   text-decoration: none;
@@ -324,12 +351,11 @@ span {
   padding-top: 0em;
   padding-right: 0.4em;
   margin-left: 0.8em;
-}
+}*/
 
-#box {
-  margin-top: 1em;
-  margin-left: 20em;
-  position: absolute;
+/*#box {
+  margin-top: 0em;
+  margin-left: 0em;
   border-radius: 20px;
   background: rgba(61, 0, 102, 0.4);
   width: 50em;
@@ -340,7 +366,7 @@ span {
   margin-top: 70em;
   width: 100%;
   height: 3em;
-}
+}*/
 
 /*.boxes {
   margin-top: 2em;
