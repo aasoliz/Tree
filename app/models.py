@@ -94,6 +94,20 @@ class Base_Post(db.Model):
     'polymorphic_on': discriminator
   }
 
+  def proper(self, category):
+    if category == 'action':
+      return 'Action/Adventure'
+    elif category == 'history':
+      return 'History'
+    elif category == 'horror':
+      return 'Horror'
+    elif category == 'romance':
+      return 'Romance'
+    elif category == 'scifi':
+      return 'SciFi/Fantasy'
+
+    return 'Mystery/Thriller/Suspense'
+
   def __repr__(self):
     return '<Post %r>' % (self.body)
 

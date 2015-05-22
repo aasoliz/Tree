@@ -213,7 +213,9 @@ def base(category):
 
   bases = Base_Post.query.filter_by(discriminator='base_post', category=category)
 
-  return render_template("story.html", bases=bases)
+  category = bases.first().proper(category)
+
+  return render_template("story.html", bases=bases, category=category)
 
 @app.route('/base_extend/<int:base_id>', methods=['GET', 'POST'])
 def base_extend(base_id):
