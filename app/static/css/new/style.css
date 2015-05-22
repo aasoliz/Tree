@@ -53,7 +53,6 @@ body {
 }
 
 .container {
-  border: 2px solid black;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -66,9 +65,17 @@ body {
 }
 
 .container tr {
-  display: inline-flex;
-
   margin: 2em;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: inline-flex;
+}
+
+.container tr:nth-child(1) {
+  margin-top: -20em;
 }
 
 .boxes {
@@ -85,8 +92,8 @@ body {
   display: -webkit-flex;
   display: flex;
 
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .boxes:hover {
@@ -148,65 +155,74 @@ img {
   display: block;
 }
 
-
-/*#sidebar a div {
-  margin-top: 2em;
-  width: 10em;
-  height: 3.1em;
+#box {
+  width: 55em;
+  height: 60em;
   border-radius: 10px;
-  background: #009900;
+  background: rgba(50, 50, 50, 0.7);
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-#sidebar a div:after {
-  content: "";
-  width: 0;
-  height: 0;
+.inner_box li {
+  list-style: none;
+  width: 28em;
+  height: 6em;
+  background: rgba(0, 153, 0, 0.7);
+  border: 2px solid #E6E6E6;
+  border-radius: 7px;
+  padding-left: 0.5em;
+  margin-bottom: 1em;
+  margin-left: -1.1em;
+  font-size: 28px;
+  text-decoration: underline;
+  color: white;
 
-  margin-left: 10em;
-  border-top: 1em solid transparent;
-  border-bottom: 1em solid transparent;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 
-  border-left: 1em solid blue;
+  justify-content: space-between;
+  align-items: center;
 }
-*/
 
-/*#sidebar a div {
-  width: 10em;
-  height: 34px;
-
-  margin-bottom: 2em;
-  background: #009900;
-  border-radius: 8px 0px 0px 8px;
-  -webkit-border-radius: 8px 0px 0px 8px;
-  position:relative;
-  line-height: 30px;
-}*/
-/*#sidebar a div:after {
-  content: "";
-  width: 25px;
-  height: 25px;
-  -moz-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  position: absolute;
-  top: 0.2em;
-  right: -0.6em;
-  z-index: -1;
-  background: #009900;
-}*/
-/*
-nav > a {
-  margin-top: 0.25em;
-  margin-left: 0.2em;
-  margin-right: 5em;
-  display: inline-block;
+.inner_box span {
+  margin-right: 1em;
   text-align: center;
-  text-decoration: none;
   font-size: 20px;
-  font-family: Arial, sans-serif;
-  color: #E6E6E6;
 }
 
-*/
+#cont {
+  border: 2px solid blue;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  justify-content: flex-start;
+}
+
+#cont td {
+  border: 2px solid white;
+  padding: 5em;
+}
+
+#footer {
+  width: 100%;
+  height: 6em;
+}
+
+
 
 
 
@@ -273,8 +289,8 @@ h2 {
 }
 
 #cont_cont {
-  margin-top: 1em;
-  margin-left: 20em;
+  margin-top: 0em;
+  margin-left: 0em;
   position: absolute;
   color: white;
 }
@@ -282,7 +298,7 @@ h2 {
 #cont {
   width: 10em;
   height: 10em;
-  margin-top: 2em;
+  margin-top: 0em;
   margin-bottom: 0.3em;
 }
 
@@ -298,36 +314,7 @@ h2 {
 }*/
 
 
-/*.middle {
-  width: 29em;
-  height: 5em;
-  margin-top: 0.5em;
-  margin-left: -0.6em;
-  padding-left: 1em;
-  display: block;
-  border: 2px solid #E6E6E6;
-  border-radius: 7px;
-  background: rgba(0, 0, 0, 0.6);
-  position: relative;
-  float: left;
-  color: white;
-  font-size: 25px;
-  text-decoration: underline;
 
-  display: flex;
-  align-items: center;
-
-  /* Cross browser support (FlexBox) */
-/*  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}*/
 
 .second {
   position: relative;
@@ -353,29 +340,7 @@ span {
   margin-left: 0.8em;
 }*/
 
-/*#box {
-  margin-top: 0em;
-  margin-left: 0em;
-  border-radius: 20px;
-  background: rgba(61, 0, 102, 0.4);
-  width: 50em;
-  height: 60em;
-}
 
-#footer {
-  margin-top: 70em;
-  width: 100%;
-  height: 3em;
-}*/
-
-/*.boxes {
-  margin-top: 2em;
-  position: relative;
-  border-radius: 20px;
-  background: rgba(61, 0, 102, 0.4);
-  width: 30em;
-  height: 20em;
-}*/
 
 .align {
   display: flex;

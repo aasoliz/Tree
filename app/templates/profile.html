@@ -5,7 +5,7 @@
 
 {% block content %}
     <h1>Profile For, {{ user.nickname }}!</h1>
-    <table id="profile" class="container">
+    <table class="container">
         <tr>
             <td id="left_profile">
                 <img src="https://pbs.twimg.com/profile_images/960696059/PIC_logo.jpg" /></br>
@@ -36,7 +36,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td id="box" class="container">
                 {% if page == "Contributions" %}
                     {% include 'contributions.html' %}
                 {% elif page == "Followers" %}
@@ -48,4 +48,6 @@
                 {% endif %}
             </td>
         </tr>
+    </table>
+    <div id="footer"></div>
 {% endblock %}

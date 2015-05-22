@@ -1,12 +1,9 @@
 <!DOCTYPE HTML>
 
-<div id="box">
-    <h2>Followers</h2>
-    <ul>
-        {% for follower in user.followed %}
-            <li class="middle"><div>Nickname: </br>About: </div><div class="second">{{ follower.nickname }} </br>{{ follower.about_me }}</div>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
-<div id="footer"></div>
+<h2>Followers</h2>
+<ul class="inner_box">
+    {% for follower in user.followed %}
+        <li class="middle"><div>Nickname: </br>About: </div><div class="second">{{ follower.nickname }} </br>{{ follower.about_me }}</div>
+        </li>
+    {% endfor %}
+</ul>
