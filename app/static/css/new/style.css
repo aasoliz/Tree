@@ -253,6 +253,49 @@ img {
   height: 6em;
 }
 
+#fields {
+  color: #E6E6E6;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.box2 {
+  width: 30em;
+  height: 26em;
+  background: rgba(50, 50, 50, 0.8);
+  border: 3px solid #009900;
+  border-radius: 20px;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  align-items: flex-end;
+}
+
+.box2 tr {
+  display: block;
+}
+
+.login {
+  width: 25em;
+  height: 15em;
+  background: rgba(50, 50, 50, 0.8);
+  border: 3px solid #009900;
+  border-radius: 20px;
+}
+
+.login img {
+  margin-top: 2em;
+  margin-left: -2.5em;
+  width: 20em;
+  height: 4em;
+  border: 2px solid #E6E6E6;
+  border-radius: 15px;
+}
 
 
 

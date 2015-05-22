@@ -118,7 +118,7 @@ def edit():
     form.emails = form.emails
 
   print type(form.birthday)
-  print form.birthday.date().strftime('on %m/%d/%y')
+  #print form.birthday.date().strftime('on %m/%d/%y')
 
   # print 'form %s' % (form.about_me.data)
   # print form.emails

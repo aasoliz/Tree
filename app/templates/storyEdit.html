@@ -5,12 +5,12 @@
 
 {% block content %}
 <div style="margin-top: 4em; height: 1px;"></div>
-<div class="align">
+<div class="container">
     <form action="" method="post" name="base">
         {{ form.hidden_tag() }}
-        <table>
+        <table class="box2">
             <tr>
-                <td id="fields">Title: </td>
+                <td id="fields">Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 <td>{{ form.title(size=32, maxlength=50) }}</td>
             </tr>
             <tr>
@@ -18,11 +18,11 @@
                 <td>{{ form.base(size=30, maxlength=1000) }}</td>
             </tr>
             <tr>
-                <td id="fields">Select: </td>
+                <td id="fields">Select:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 <td>{{ form.category }}</td>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Submit"></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit"></td>
             </tr>
         </table>
     </form>

@@ -4,25 +4,25 @@
 
 {% block content %}
     <h1>Edit Your Profile</h1>
-    <div class="align">
+    <div class="container">
         <form action="" method="post" name="edit">
             {{ form.hidden_tag() }}
-            <table class="boxes">
+            <table class="box2">
                 <tr>
                     <td id="fields">About Yourself: </td>
                     <td>{{ form.about_me() }}</td>
                 </tr>
                 <tr>
-                    <td id="fields">Birthday: </td>
+                    <td id="fields">Birthday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>{{ form.birthday(class='date') }}</td>
                 </tr>
                 <tr>
-                    <td id="fields">Get Emails?</td>
+                    <td id="fields">Get Emails?&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>{{ form.emails() }}</td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Save Changes"></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Save Changes"></td>
                 </tr>
             </table>
         </form>
