@@ -9,6 +9,11 @@ follow_table = db.Table('follow_table',
   db.Column('followee', db.Integer, db.ForeignKey('user.id'), primary_key=True)
 )
 
+fav_table = db.Table('fav_table',
+  db.Column('person', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+  db.Column('fav', db.Integer, db.ForeignKey('base_post.id'), primary_key=True)
+)
+
 class User(db.Model):
   # Name of the table
   __tablename__ = 'user'
@@ -24,6 +29,11 @@ class User(db.Model):
   reputation = db.Column(db.Integer, default=0)
   emails = db.Column(db.Boolean, default=True)
   posts = db.relationship('User_Post', backref='author', lazy='dynamic')
+  
+  favs = db.relationship('Base_Post',
+    secondary=fav_table,
+    backref=db.backref('fav_table', lazy='dynamic'), lazy='dynamic'
+  )
 
   # Describes how to get the data
   followed = db.relationship('User',
@@ -72,6 +82,46 @@ class User(db.Model):
 
   def seen_last(self):
     return self.last_seen.strftime('on %m/%d/%y at %I:%M')
+
+  def reputation(self):
+    return self.posts.filter_by(comment=0).count()
+
+  def add_fav(self, base):
+    print self.is_faved(base)
+
+    if self.is_faved(base):
+      self.favs.remove(base)
+      return self
+    else:
+      self.favs.append(base)
+      return self
+
+  def is_faved(self, base):
+    return self.favs.filter(fav_table.c.person == self.id, fav_table.c.fav == base.id).count() > 0
+
+  def favorites(self, disc):
+    lst = []
+    posts =  self.favs.filter(fav_table.c.person == self.id)
+
+    for post in posts:
+      if(disc):
+        if post.discriminator == 'base_post':
+          lst.append(post)
+      else:
+        if post.discriminator == 'user_post':
+          if post.comment == 0:
+            lst.append(post)
+
+    return lst
+
+  def post_favs(self):
+    lst = None
+    posts = self.favs.filter(fav_table.c.person == self.id)
+
+    for post in posts:
+      lst.append(post.filter_by(discriminator='user_post', comment=0))
+
+    return lst
 
   # How posts are represented
   def __repr__(self):

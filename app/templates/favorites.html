@@ -4,14 +4,14 @@
 <table>
     <tr style="margin-top: 2em; margin-bottom: 2em" id="cont">
         <td style="margin: 0 3em 0 0; padding: 0"><div>Top&nbsp;3:&nbsp;</div></td>
-        <td><p>Story Base</p></td>
-        <td><p>Story Base</p></td>
-        <td><p>Story Base</p></td>
+        {% for post in user.favorites(True) %}
+            <td><a href="{{ url_for('story', base_id=post.id) }}">Story Base</a></td>
+        {% endfor %}
     </tr>
     <tr id="cont">
         <td style="margin: 0 3em 0 0; padding: 0">Other: </td>
-        <td><p>Story Base</p></td>
-        <td><p>Story Base</p></td>
-        <td><p>Story Base</p></td>
+        {% for post in user.favorites(False) %}
+            <td><a href="{{ url_for('story', base_id=post.id) }}">Story Base</a></td>
+        {% endfor %}
     </tr>
 </table>

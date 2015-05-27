@@ -85,7 +85,10 @@ def logout():
 @login_required
 def profile(nickname, page):
   user = User.query.filter_by(nickname=nickname).first()
-  posts = user.posts
+  posts = user.posts.paginate(1, 3, False)
+
+  rep = user.reputation()
+  print rep
 
   if not page:
     page = 'About'
@@ -93,6 +96,9 @@ def profile(nickname, page):
   if user is None:
     flash('User not found')
     return redirect(url_for('index'))
+
+  # if page == 'Favorites':
+  #   posts = user.favorites(True)
 
   return render_template("profile.html", page=page, user=user, posts=posts)
 
@@ -208,28 +214,32 @@ def base_add():
   return render_template("storyEdit.html", form=form)
 
 @app.route('/base/<category>')
-def base(category):
-  user = g.user 
+@app.route('/base/<category>/<int:page>')
+def base(category, page=1):
+  user = g.user
 
-  bases = Base_Post.query.filter_by(discriminator='base_post', category=category)
+  bases = Base_Post.query.filter_by(discriminator='base_post', category=category).paginate(page, 10, False)
 
-  category = bases.first().proper(category)
+  proper = bases.items[0].proper(category)
 
-  return render_template("story.html", bases=bases, category=category)
+  return render_template("story.html", bases=bases, category=proper, unproper=category)
 
 @app.route('/base_extend/<int:base_id>', methods=['GET', 'POST'])
 def base_extend(base_id):
   form = PostForm()
 
   if form.validate_on_submit():
-    category = Base_Post.query.filter_by(id=base_id).first().category
+    base = Base_Post.query.filter_by(id=base_id).first()
+
+    category = base.category
+    title = base.title
 
     body_len = len(form.post.data)
 
     if body_len > 140:
-      extended = User_Post(body=form.post.data, description=form.post.data[0:140] + '...', timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
+      extended = User_Post(body=form.post.data, title=title, description=form.post.data[0:140] + '...', timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
     else:
-      extended = User_Post(body=form.post.data, description=form.post.data, timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
+      extended = User_Post(body=form.post.data, title=title, description=form.post.data, timestamp=datetime.utcnow(), category=category, comment=0, extend=base_id, discriminator='user_post', author=g.user)
 
     db.session.add(extended)
     db.session.commit()
@@ -261,11 +271,26 @@ def comment(base_id):
   return render_template("post_edit.html", form=form)
 
 @app.route('/story/<int:base_id>')
-def story(base_id):
+@app.route('/story/<int:base_id>/<int:page>')
+def story(base_id, page=1):
+  base = Base_Post.query.filter_by(id=base_id).first()
+
+  comments = User_Post.query.filter_by(discriminator='user_post', comment=base_id, extend=0).paginate(page, 5, False)
+  extends = User_Post.query.filter_by(discriminator='user_post', extend=base_id, comment=0).paginate(page, 3, False)
+
+  return render_template('specific.html', base=base, comments=comments, extends=extends)
+
+@app.route('/fav/<int:base_id>')
+def fav(base_id):
+  user = g.user
+  print user
 
   base = Base_Post.query.filter_by(id=base_id).first()
 
-  comments = User_Post.query.filter_by(discriminator='user_post', comment=base_id, extend=0)
-  extends = User_Post.query.filter_by(discriminator='user_post', extend=base_id, comment=0)
+  u = user.add_fav(base)
 
-  return render_template('specific.html', base=base, comments=comments, extends=extends)
+  db.session.add(u)
+  db.session.commit()
+  flash('successful')
+
+  return redirect(url_for('story', base_id=base_id))

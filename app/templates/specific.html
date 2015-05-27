@@ -11,8 +11,9 @@
         <p id="base_story">{{ base.body }}</br></br>
             <a href="{{ url_for('base_extend', base_id=base.id) }}">Extend</a>
             <a href="{{ url_for('comment', base_id=base.id) }}">Comment</a>
+            <a href="{{ url_for('fav', base_id=base.id) }}">Fav</a>
         </p>
-        {% for extend in extends %}
+        {% for extend in extends.items %}
             <a href="{{ url_for('story', base_id=extend.id) }}">
                 <p id="sub">{{ extend.description }}</br>
                     <a href="{{ url_for('base_extend', base_id=extend.id) }}">Extend</a>
@@ -20,11 +21,16 @@
                 </p>
             </a>
         {% endfor %}
-        {% for comment in comments %}
+        {% for comment in comments.items %}
             <p id="sub">{{ comment.body }}
                 <a href="{{ url_for('comment', base_id=comment.id) }}">Comment</a>
             </p>
         {% endfor %}
+        {% if extends.has_prev %}
+            <a class="next" href="{{ url_for('story', base_id=base.id, page=extends.prev_num) }}">Previous</a>
+        {% elif extends.has_next %}
+            <a class="next" href="{{ url_for('story', base_id=base.id, page=extends.next_num) }}">Next</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

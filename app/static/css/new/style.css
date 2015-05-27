@@ -122,6 +122,11 @@ body {
   color: #E6E6E6;
 }
 
+.next {
+  font-size: 20px;
+  text-decoration: none;
+}
+
 .story a:hover {
   color: #009900;
 }
@@ -292,14 +297,17 @@ img {
   align-content: center;
 }
 
-#cont td p {
+#cont td a, #cont td p {
   border: 2px solid #009900;
   background: rgba(50, 50, 50, 0.5);
   margin: 0.5em;
   padding: 5em;
+  color: #E6E6E6;
+  font-size: 18px;
+  text-decoration: none;
 }
 
-#cont td p:hover {
+#cont td p:hover, #cont td a:hover {
   background: rgba(0, 153, 0, 0.8);
 }
 

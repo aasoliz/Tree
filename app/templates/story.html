@@ -8,7 +8,7 @@
 <div class="container">
     <ul class="story">
         <h2>Stories</h2>
-        {% for base in bases %}
+        {% for base in bases.items %}
             <a href="{{ url_for('story', base_id=base.id) }}">
                 <li>
                     <h3>{{ base.title }}</h3>
@@ -18,6 +18,11 @@
                 </li>
             </a>
         {% endfor %}
+    {% if bases.has_prev %}
+        <a class="next" href="{{ url_for('base', category=unproper, page=bases.prev_num) }}">Previous</a>
+    {% elif bases.has_next %}
+        <a class="next" href="{{ url_for('base', category=unproper, page=bases.next_num) }}">Next</a>
+    {% endif %}
     </ul>
 </div>
 <div id="footer"></div>
