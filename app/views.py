@@ -81,17 +81,13 @@ def logout():
   logout_user()
   return redirect(url_for('index'))
 
+@app.route('/profile/<nickname>')
 @app.route('/profile/<nickname>/<page>')
 @login_required
-def profile(nickname, page):
+def profile(nickname, page='About'):
   user = User.query.filter_by(nickname=nickname).first()
   posts = user.posts.paginate(1, 3, False)
-
   rep = user.reputation()
-  print rep
-
-  if not page:
-    page = 'About'
 
   if user is None:
     flash('User not found')
@@ -100,7 +96,7 @@ def profile(nickname, page):
   # if page == 'Favorites':
   #   posts = user.favorites(True)
 
-  return render_template("profile.html", page=page, user=user, posts=posts)
+  return render_template("profile.html", page=page, user=user, posts=posts, rep=rep)
 
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
@@ -291,6 +287,7 @@ def fav(base_id):
 
   db.session.add(u)
   db.session.commit()
+
   flash('successful')
 
   return redirect(url_for('story', base_id=base_id))

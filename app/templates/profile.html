@@ -10,9 +10,10 @@
             <td id="left_profile">
                 <img style="margin: 1em 0 1em 4em" src="https://pbs.twimg.com/profile_images/960696059/PIC_logo.jpg" /></br>
                 <p style="color: white; margin-left: 2em;"><em>Last seen <em>{{ user.seen_last() }}</p>
+                <p style="color: white; text-align: center; margin-left: 2em;">Reputation: {{ rep }}</p>
                 {% if g.user.is_following(user) %}
                     <a href="{{ url_for('unfollow', nickname=user.nickname) }}">Unfollow</a>
-                {% else %}
+                {% elif user != g.user %}
                     <a href="{{ url_for('follow', nickname=user.nickname) }}">Follow</a>
                 {% endif %}
                 {% if user == g.user %}

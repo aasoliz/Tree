@@ -84,16 +84,27 @@ class User(db.Model):
     return self.last_seen.strftime('on %m/%d/%y at %I:%M')
 
   def reputation(self):
-    return self.posts.filter_by(comment=0).count()
+    posts = self.posts.filter_by(comment=0).count()
+    faves = self.posts.filter(Base_Post.favorite != 0).count()
+
+    if faves is 0:
+      return posts / 2
+
+    return posts * (faves / 2)
+
 
   def add_fav(self, base):
     print self.is_faved(base)
 
     if self.is_faved(base):
       self.favs.remove(base)
+      base.favorite = (base.favorite - 1)
+
       return self
     else:
       self.favs.append(base)
+      base.favorite = (base.favorite + 1)
+      
       return self
 
   def is_faved(self, base):
@@ -114,15 +125,6 @@ class User(db.Model):
 
     return lst
 
-  def post_favs(self):
-    lst = None
-    posts = self.favs.filter(fav_table.c.person == self.id)
-
-    for post in posts:
-      lst.append(post.filter_by(discriminator='user_post', comment=0))
-
-    return lst
-
   # How posts are represented
   def __repr__(self):
     return '<User %r>' % (self.nickname)
@@ -137,6 +139,7 @@ class Base_Post(db.Model):
   description = db.Column(db.String(140))
   timestamp = db.Column(db.DateTime)
   category = db.Column(db.String)
+  favorite = db.Column(db.Integer, default=0)
 
   # Type of Base_Post
   discriminator = db.Column('type', db.String(50))
