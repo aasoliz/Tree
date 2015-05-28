@@ -9,6 +9,7 @@ follow_table = db.Table('follow_table',
   db.Column('followee', db.Integer, db.ForeignKey('user.id'), primary_key=True)
 )
 
+# Table for many to many between user and posts
 fav_table = db.Table('fav_table',
   db.Column('person', db.Integer, db.ForeignKey('user.id'), primary_key=True),
   db.Column('fav', db.Integer, db.ForeignKey('base_post.id'), primary_key=True)
@@ -30,6 +31,7 @@ class User(db.Model):
   emails = db.Column(db.Boolean, default=True)
   posts = db.relationship('User_Post', backref='author', lazy='dynamic')
   
+  # Many to many relationship
   favs = db.relationship('Base_Post',
     secondary=fav_table,
     backref=db.backref('fav_table', lazy='dynamic'), lazy='dynamic'
@@ -62,14 +64,12 @@ class User(db.Model):
     except NameError:
       return str(self.id)  # python 3
 
-  # Called when the user follows someone
   # Adds current user to the table of followers for the followee
   def follow(self, user):
     if not self.is_following(user):
       self.followed.append(user)
       return self
 
-  # Called when the user unfollows someone
   # Removes the current user from the table of followers
   def unfollow(self, user):
     if self.is_following(user):
@@ -80,9 +80,11 @@ class User(db.Model):
   def is_following(self, user):
     return self.followed.filter(follow_table.c.followee == user.id).count() > 0
 
+  # Formatted string with date and time
   def seen_last(self):
     return self.last_seen.strftime('on %m/%d/%y at %I:%M')
 
+  # Calculates the reputation of the user (# of posts * (# of favorited posts / 2))
   def reputation(self):
     posts = self.posts.filter_by(comment=0).count()
     faves = self.posts.filter(Base_Post.favorite != 0).count()
@@ -93,9 +95,8 @@ class User(db.Model):
     return posts * (faves / 2)
 
 
+  # Inserts into fav_table and adds/removes from base favorite number
   def add_fav(self, base):
-    print self.is_faved(base)
-
     if self.is_faved(base):
       self.favs.remove(base)
       base.favorite = (base.favorite - 1)
@@ -107,9 +108,11 @@ class User(db.Model):
       
       return self
 
+  # Has the user already favorited this post
   def is_faved(self, base):
     return self.favs.filter(fav_table.c.person == self.id, fav_table.c.fav == base.id).count() > 0
 
+  # List of favorites either 'base' or 'extend' depending on 'disc'
   def favorites(self, disc):
     lst = []
     posts =  self.favs.filter(fav_table.c.person == self.id)
@@ -147,6 +150,7 @@ class Base_Post(db.Model):
     'polymorphic_on': discriminator
   }
 
+  # Proper name of categories
   def proper(self, category):
     if category == 'action':
       return 'Action/Adventure'
