@@ -14,7 +14,7 @@
             <ul class="nav">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('base_add') }}">Add</a></li>
-                {% if g.user.is_authenticated() %}
+                {% if g.user %}
                     <li><a href="{{ url_for('profile', nickname=g.user.nickname, page='About') }}">Profile
                         </a></li>
                         <!-- Take out for now <ul>

@@ -14,7 +14,7 @@ from models import User, User_Post, Base_Post
 def index():
   user = g.user
 
-  return render_template('index.html', title='Home', user=user)
+  return render_template('index2.html', title='Home', user=user)
 
 @app.before_request
 def before_request():

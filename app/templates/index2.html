@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+
+<!-- extends base -->
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.nickname %}
+        <h1>Hi, {{ user.nickname }}!</h1>
+    {% else %}
+        <h1>Hi, Guest!</h1>
+    {% endif %}
+        <div class=newfront>
+          <span></span>
+          <div id=textbox>Type on me!</div>
+          <ul>
+            <li><a href="{{ url_for('base', category='action') }}">Action/Adventure</a></li>
+            <li><a href="{{ url_for('base', category='history') }}">History</a></li>
+            <li><a href="{{ url_for('base', category='horror') }}">Horror</a></li>
+            <li><a href="{{ url_for('base', category='mystery') }}">Mystery/Thriller/Suspense</a></li>
+            <li><a href="{{ url_for('base', category='romance') }}">Romance</a></li>
+            <li><a href="{{ url_for('base', category='scifi') }}">SciFi/Fantasy</a></li>
+            </ul>
+        </div>
+{% endblock %}

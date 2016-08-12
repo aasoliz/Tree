@@ -6,7 +6,7 @@
 
 .nav {
   list-style: none;
-  background: #323232;
+  background: #1f1f1f;
   height: 3.5em;
   padding: 0;
   margin-top: -0.5em;
@@ -471,4 +471,44 @@ h3 {
   -webkit-flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+}
+
+#textbox {
+    width: 90%;
+    height: 2em;
+    background: rgba(255, 255, 255, 0.3);
+    margin-left: 2.3em;
+
+    border-radius: 10px;
+}
+
+.newfront {
+    width: 65%;
+    margin-left: 15em;
+    height: 22em;
+    background-color: #1f1f1f;
+    color: #e6e6e6;
+    text-align: center;
+}
+
+li {
+    list-style: none;
+    display: inline block;
+    margin-left: -2.5em;
+    text-align: left;
+}
+
+div ul li:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+a {
+    padding: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+a:hover {
+    color: #009900;
 }
